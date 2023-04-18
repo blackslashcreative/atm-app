@@ -28,7 +28,10 @@ const BankAccount = () => {
   const handleSubmit = event => {
     console.log('submitted');
     let newTotal = isDeposit ? accountState + deposit : accountState - deposit;
-    setAccountState(newTotal);
+    if (newTotal >= 0) {
+      setAccountState(newTotal);
+    }
+    console.log(newTotal);
     event.preventDefault();
   };
 
