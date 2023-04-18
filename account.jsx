@@ -13,9 +13,12 @@ const ATMDeposit = ({ onChange, isDeposit }) => {
 
 const BankAccount = () => {
   let deposit = 0;
-  
   const [accountState, setAccountState] = React.useState(0);
   const [isDeposit, setIsDeposit] = React.useState(true);
+
+  console.log("rendered BankAccount");
+  console.log(`accountState = ${accountState}`);
+  console.log(`isDeposit = ${isDeposit}`);
 
   //console.log(`Account total = ${accountState}`);
   
@@ -31,8 +34,8 @@ const BankAccount = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button onClick={() => setIsDeposit(true)}>Deposit</button>
-      <button onClick={() => setIsDeposit(false)}>Withdrawal</button>
+      <button className={isDeposit ? "selected" : null} onClick={() => setIsDeposit(true)}>Deposit</button>
+      <button className={isDeposit ? null : "selected"} onClick={() => setIsDeposit(false)}>Withdrawal</button>
       <br/><br/>
       <ATMDeposit onChange={handleChange} isDeposit={isDeposit}> Deposit</ATMDeposit>
       <h6>Account Balance: {accountState}</h6>
