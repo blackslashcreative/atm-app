@@ -5,7 +5,7 @@ const ATMDeposit = ({ onChange, isDeposit }) => {
   return (
     <label className="label huge">
       <h3>{choice[Number(!isDeposit)]}</h3>
-      <input type="number" onChange={onChange}></input>
+      <input name="amount" type="number" onChange={onChange}></input>
       <input type="submit" value="Submit"></input>
     </label>
   );
@@ -26,13 +26,14 @@ const BankAccount = () => {
     deposit = Number(event.target.value);
   };
   const handleSubmit = event => {
-    console.log('submitted');
+    event.preventDefault();
+    
     let newTotal = isDeposit ? accountState + deposit : accountState - deposit;
     if (newTotal >= 0) {
       setAccountState(newTotal);
     }
-    console.log(newTotal);
-    event.preventDefault();
+    // clear form 
+    event.target.elements.amount.value = 0;
   };
 
   return (
